@@ -1,0 +1,161 @@
+/*
+Tema 1: Arquitectura semantica HTML5 y modelo de caja CSS
+*/
+
+/* RESETEO GLOBAL */
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}
+
+/* Selectores de TIPO */
+html {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+}
+
+body {
+    background-color: #aaaaaa;
+}
+
+a {
+    color: #333333;
+    text-decoration: none;
+}
+
+/* ENCABEZADO */
+.encabezado-principal {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    background-color: #cccccc;
+    padding: 10px 20px;
+}
+
+.encabezado-principal h1 {
+    margin: 0;
+    font-size: 1.4rem;
+}
+
+.encabezado-principal .vinculos {
+    display: flex;
+    gap: 15px;
+}
+
+/* CONTENIDO PRINCIPAL */
+.contenido-principal {
+    background-color: #ffffff;
+    padding: 20px;
+}
+
+/* solo se ve la sección elegida en el menú (pseudoclase :target) */
+.contenido-principal > section {
+    display: none;
+    margin-bottom: 30px;
+    overflow-x: auto;
+}
+
+.contenido-principal > section:target {
+    display: block;
+}
+
+/* al abrir la página sin elegir nada, se muestra la primera sección */
+.contenido-principal:not(:has(:target)) #semantica {
+    display: block;
+}
+
+/* MODELO DE CAJA: content-box vs border-box */
+/*
+Las dos cajas tienen lo mismo: width 300, height 150, padding 20, border 10
+
+content-box (por defecto):
+    ancho total = 300 + (20 x 2) + (10 x 2) = 360px
+    alto total  = 150 + (20 x 2) + (10 x 2) = 210px
+
+border-box:
+    ancho total = 300px (el contenido queda en 300 - 60 = 240px)
+    alto total  = 150px (el contenido queda en 150 - 60 = 90px)
+
+background-clip: content-box pinta solo el contenido, asi se ve
+dande termina el padding y empieza el borde
+*/
+.comparacion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
+}
+
+.caja {
+    width: 300px;
+    height: 150px;
+    margin: 0; /* figure trae margen por defecto */
+    padding: 20px;
+    border: 10px solid #333333;
+    background-color: #ffff00;
+    background-clip: content-box;
+    font-size: 0.8rem;
+}
+
+/* comportamiento por defecto del navegador */
+.caja-content-box {
+    box-sizing: content-box;
+}
+
+/* comportamiento modificado (hereda border-box del reseteo) */
+.caja-border-box {
+    box-sizing: border-box;
+}
+
+/* HERENCIA */
+/*
+Caso 1: .hijo hereda border-box de html, su width: 100% incluye
+padding y borde, entonces encaja.
+Caso 2: .hijo-sin-herencia fuerza content-box (valor inicial),
+width: 100% + padding (16 x 2) + borde (4 x 2) = 40px de mas, desborda.
+Se puede comprobar en DevTools > Computed.
+*/
+.padre {
+    margin-bottom: 15px;
+    padding: 15px;
+    border: 2px dashed #333333;
+}
+
+.padre h3 {
+    margin-top: 0;
+}
+
+.hijo {
+    width: 100%;
+    margin: 0;
+    padding: 16px;
+    border: 4px solid #910000;
+    background-color: #cccccc;
+}
+
+.hijo-sin-herencia {
+    box-sizing: content-box;
+}
+
+/* PIE PRINCIPAL */
+.pie-principal {
+    background-color: #cccccc;
+    padding: 5px 20px;
+}
+
+.pie-principal p {
+    margin: 0;
+}

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcial 1 AW1 - Arquitectura semantica HTML5 y modelo de caja CSS">
+    <title>Parcial 1 - Arquitectura semántica y modelo de caja</title>
+    <link rel="stylesheet" href="recursos/estilos/estilos.css">
+</head>
+<body>
+    <!-- header: encabezado de la pagina -->
+    <header class="encabezado-principal">
+        <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
+        <!-- nav: bloque de navegacion -->
+        <nav class="vinculos" aria-label="Navegacion principal">
+            <a href="#semantica">Etiquetas semanticas</a>
+            <a href="#modelo-de-caja">Modelo de caja</a>
+            <a href="#herencia">Herencia</a>
+        </nav>
+    </header>
+
+    <!-- main: contenido principal, uno solo por pagina -->
+    <main class="contenido-principal">
+
+        <!-- section: agrupa contenido por tema y lleva su encabezado -->
+        <section id="semantica" aria-labelledby="titulo-semantica">
+            <h2 id="titulo-semantica">Etiquetas semanticas</h2>
+
+            <!-- article: contenido que tiene sentido por si solo -->
+            <article>
+                <h3>header y nav</h3>
+                <p>
+                    header agrupa el contenido introductorio y nav identifica los enlaces de navegacion.
+                    Los lectores de pantalla los anuncian como regiones de referencia .
+                </p>
+            </article>
+
+            <article>
+                <h3>main, section y article</h3>
+                <p>
+                    main contiene el contenido central, section lo divide por temas y article
+                    encapsula piezas independientes.
+                </p>
+            </article>
+
+            <article>
+                <h3>footer</h3>
+                <p>
+                    footer cierra la pagina o una seccion con datos de autoria, contacto o enlaces.
+                </p>
+            </article>
+        </section>
+
+        <section id="modelo-de-caja" aria-labelledby="titulo-caja">
+            <h2 id="titulo-caja">Modelo de caja: content-box vs. border-box</h2>
+            <p>
+                Las dos cajas tienen las mismas declaraciones (width, height, padding y border).
+                Solo cambia box-sizing.
+            </p>
+
+            <!-- figure + figcaption: cada caja es una figura, no hace falta un div -->
+            <section class="comparacion" aria-label="Cajas de ejemplo">
+                <figure class="caja caja-content-box">
+                    <figcaption>
+                        <strong>content-box</strong><br>
+                        Contenido: 300 x 150 px<br>
+                        Total: 360 x 210 px
+                    </figcaption>
+                </figure>
+
+                <figure class="caja caja-border-box">
+                    <figcaption>
+                        <strong>border-box</strong><br>
+                        Contenido: 240 x 90 px<br>
+                        Total: 300 x 150 px
+                    </figcaption>
+                </figure>
+            </section>
+        </section>
+
+        <section id="herencia" aria-labelledby="titulo-herencia">
+            <h2 id="titulo-herencia">box-sizing se hereda?</h2>
+            <p>
+                No se hereda por defecto. Por eso el reseteo usa inherit para pasar el valor de html
+                a todos los elementos.
+            </p>
+
+            <article class="padre">
+                <h3>Con reseteo (hereda border-box)</h3>
+                <p class="hijo">width: 100% - encaja en el contenedor</p>
+            </article>
+
+            <article class="padre">
+                <h3>Sin herencia (content-box)</h3>
+                <p class="hijo hijo-sin-herencia">width: 100% - desborda el contenedor</p>
+            </article>
+        </section>
+    </main>
+
+    <!-- footer: pie de pagina -->
+    <footer class="pie-principal">
+        <p>Mateo Soria - Aplicaciones Web 1 - Parcial 1</p>
+    </footer>
+</body>
+
+</html>
