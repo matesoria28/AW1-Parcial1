@@ -6,11 +6,11 @@
     <title>Parcial 1 - Soria Mateo</title>
     <style>
         @page { size: A4; margin: 1.6cm 1.8cm; }
-        body { font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; line-height: 1.45; color: #222222; }
-        .datos { border-bottom: 2px solid #333333; padding-bottom: 8px; margin-bottom: 16px; }
+        body { font-family: Arial, "Liberation Sans", sans-serif; font-size: 10pt; line-height: 1.45; color: #222222; }
+        .datos { border-bottom: 2px solid #1f3a5f; padding-bottom: 8px; margin-bottom: 16px; }
         .datos p { margin: 2px 0; }
-        h1 { font-size: 15pt; margin: 0 0 8px; }
-        h2 { font-size: 12pt; margin: 18px 0 6px; }
+        h1 { color: #1f3a5f; font-size: 15pt; margin: 0 0 8px; }
+        h2 { color: #1f3a5f; font-size: 12pt; margin: 18px 0 6px; }
         p { margin: 0 0 8px; text-align: justify; }
         code { font-family: "Courier New", monospace; font-size: 10pt; }
         pre { font-size: 9pt; background: #eeeeee; padding: 8px; border: 1px solid #999999; }
@@ -18,7 +18,7 @@
         th, td { border: 1px solid #999999; padding: 4px 8px; text-align: left; }
         .salto { page-break-before: always; }
         li { margin-bottom: 2px; }
-        img { width: 100%; border: 1px solid #999999; }
+        img { display: block; max-width: 100%; max-height: 23cm; margin: 0 auto; border: 1px solid #999999; }
     </style>
 </head>
 
@@ -82,6 +82,10 @@
     <p>
         Archivos: <code>src/index.html</code> y <code>src/recursos/estilos/estilos.css</code>. Se ejecuta con
         <code>pnpm install</code> y <code>pnpm dev</code> (five-server, raíz en <code>src</code>).
+        El <code>body</code> se divide en tres regiones independientes: <code>header</code>, <code>main</code> y
+        <code>footer</code>. La tipografía se carga de forma local con <code>@font-face</code> desde
+        <code>recursos/estilos/fuentes</code> (Liberation Sans, equivalente libre de Arial) y la paleta usa
+        tonos de azul y blanco.
     </p>
 
     <h2>1. Estructura semántica (antes vs. después)</h2>
@@ -102,7 +106,7 @@
     </table>
     <p>
         Los valores se verificaron en el navegador (DevTools &gt; Computed): <code>offsetWidth</code> de 360 px
-        y 300 px respectivamente. Con <code>background-clip: content-box</code> el amarillo pinta solo el área de
+        y 300 px respectivamente. Con <code>background-clip: content-box</code> el azul claro pinta solo el área de
         contenido y se ve cuánto espacio queda en cada caso.
     </p>
 

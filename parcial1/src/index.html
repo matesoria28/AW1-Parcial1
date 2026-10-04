@@ -10,6 +10,7 @@
 </head>
 
 <body>
+    <!-- ==================== 1. HEADER ==================== -->
     <!-- header: contenido introductorio de la página (landmark "banner") -->
     <header class="encabezado-principal">
         <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
@@ -20,7 +21,9 @@
             <a href="#herencia">Herencia</a>
         </nav>
     </header>
+    <!-- ================== FIN HEADER ================== -->
 
+    <!-- ==================== 2. MAIN ==================== -->
     <!-- main: contenido central, uno solo por página (landmark "main") -->
     <main class="contenido-principal">
 
@@ -90,7 +93,7 @@
             <h2 id="titulo-caja">Modelo de caja: content-box vs. border-box</h2>
             <p>
                 Las dos cajas tienen las mismas declaraciones (width, height, padding y border).
-                Solo cambia box-sizing. El amarillo marca el área de contenido.
+                Solo cambia box-sizing. El azul claro marca el área de contenido.
             </p>
 
             <!-- figure + figcaption: cada caja es una figura con su descripción, no hace falta un div -->
@@ -131,11 +134,14 @@
             </article>
         </section>
     </main>
+    <!-- ================== FIN MAIN ================== -->
 
+    <!-- ==================== 3. FOOTER ==================== -->
     <!-- footer: cierre de la página con datos de autoría (landmark "contentinfo") -->
     <footer class="pie-principal">
         <p>Mateo Soria - Aplicaciones Web 1 - Parcial 1</p>
     </footer>
+    <!-- ================== FIN FOOTER ================== -->
 </body>
 
 </html>
