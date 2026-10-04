@@ -80,7 +80,10 @@
 
     <h2 class="salto">Demostración codificada</h2>
     <p>
-        Archivos: <code>src/index.html</code> y <code>src/recursos/estilos/estilos.css</code>. Se ejecuta con
+        Archivos: tres páginas HTML enlazadas desde el <code>nav</code> (<code>src/index.html</code>,
+        <code>src/modelo-de-caja.html</code> y <code>src/herencia.html</code>), cada una con un solo tema, y una
+        hoja de estilos compartida (<code>src/recursos/estilos/estilos.css</code>). El enlace de la página actual
+        lleva <code>aria-current="page"</code>. Se ejecuta con
         <code>pnpm install</code> y <code>pnpm dev</code> (five-server, raíz en <code>src</code>).
         El <code>body</code> se divide en tres regiones independientes: <code>header</code>, <code>main</code> y
         <code>footer</code>. La tipografía se carga de forma local con <code>@font-face</code> desde
@@ -93,7 +96,7 @@
         La página está maquetada solo con <code>header</code>, <code>nav</code>, <code>main</code>,
         <code>section</code>, <code>article</code> y <code>footer</code>, sin ningún
         <code>div</code>. Cada <code>section</code> se vincula a su título con <code>aria-labelledby</code> y el
-        <code>nav</code> tiene <code>aria-label</code>. Dentro de la página se muestra el mismo esquema escrito
+        <code>nav</code> tiene <code>aria-label</code>. En <code>index.html</code> se muestra el mismo esquema escrito
         con <code>div</code> (antes) y con etiquetas semánticas (después).
     </p>
 
@@ -120,24 +123,19 @@
     </ul>
 
     <h2>Reseteo global aplicado</h2>
-<pre>html {
-    box-sizing: border-box;
-}
+<pre>html { box-sizing: border-box; }
+*, *::before, *::after { box-sizing: inherit; }
+html, body { margin: 0; padding: 0; }</pre>
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
+    <h2 class="salto">Capturas de la demostración</h2>
+    <p><strong>index.html</strong> - Etiquetas semánticas</p>
+    <img src="./captura-semantica.png" alt="Captura de la página Etiquetas semánticas">
 
-html,
-body {
-    margin: 0;
-    padding: 0;
-}</pre>
+    <p class="salto"><strong>modelo-de-caja.html</strong> - content-box vs. border-box</p>
+    <img src="./captura-modelo-de-caja.png" alt="Captura de la página Modelo de caja">
 
-    <h2 class="salto">Captura de la demostración</h2>
-    <img src="./captura-demo.png" alt="Captura de la página: estructura semántica, comparación de cajas y prueba de herencia">
+    <p><strong>herencia.html</strong> - ¿box-sizing se hereda?</p>
+    <img src="./captura-herencia.png" alt="Captura de la página Herencia">
 </body>
 
 </html>

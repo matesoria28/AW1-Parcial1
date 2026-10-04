@@ -5,23 +5,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Parcial 1 AW1 - Arquitectura semántica HTML5 y modelo de caja CSS">
-    <title>Parcial 1 - Arquitectura semántica y modelo de caja</title>
+    <title>Parcial 1 - Etiquetas semánticas</title>
     <link rel="stylesheet" href="./recursos/estilos/estilos.css">
 </head>
 
 <body>
     <header class="encabezado-principal">
         <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
-        <!-- nav: bloque de navegación principal (landmark "navigation") -->
+        <!-- nav: navegación entre páginas; aria-current indica la página actual -->
         <nav class="vinculos" aria-label="Navegación principal">
-            <a href="#semantica">Etiquetas semánticas</a>
-            <a href="#modelo-de-caja">Modelo de caja</a>
-            <a href="#herencia">Herencia</a>
+            <a href="./index.html" class="activo" aria-current="page">Etiquetas semánticas</a>
+            <a href="./modelo-de-caja.html">Modelo de caja</a>
+            <a href="./herencia.html">Herencia</a>
         </nav>
     </header>
 
     <main class="contenido-principal">
-
         <!-- section: agrupa contenido de un mismo tema y lleva su propio encabezado -->
         <section id="semantica" aria-labelledby="titulo-semantica">
             <h2 id="titulo-semantica">Etiquetas semánticas</h2>
@@ -81,47 +80,6 @@
                         </ul>
                     </article>
                 </section>
-            </article>
-        </section>
-
-        <section id="modelo-de-caja" aria-labelledby="titulo-caja">
-            <h2 id="titulo-caja">Modelo de caja: content-box vs. border-box</h2>
-            <p>
-                Las dos cajas tienen las mismas declaraciones (width, height, padding y border).
-                Solo cambia box-sizing. El azul claro marca el área de contenido.
-            </p>
-
-            <!-- cada caja es un párrafo con su descripción; las dos tienen las mismas medidas -->
-            <section class="comparacion" aria-label="Cajas de ejemplo">
-                <p class="caja caja-content-box">
-                    <strong>content-box</strong> (por defecto)<br>
-                    Contenido: 300 x 150 px<br>
-                    Total: 360 x 210 px
-                </p>
-
-                <p class="caja caja-border-box">
-                    <strong>border-box</strong> (modificado)<br>
-                    Contenido: 240 x 90 px<br>
-                    Total: 300 x 150 px
-                </p>
-            </section>
-        </section>
-
-        <section id="herencia" aria-labelledby="titulo-herencia">
-            <h2 id="titulo-herencia">¿box-sizing se hereda?</h2>
-            <p>
-                No se hereda por defecto. Por eso el reseteo usa inherit para pasar el valor de html
-                a todos los elementos.
-            </p>
-
-            <article class="padre">
-                <h3>Caso 1: con reseteo (hereda border-box)</h3>
-                <p class="hijo">width: 100% - encaja en el contenedor</p>
-            </article>
-
-            <article class="padre">
-                <h3>Caso 2: sin herencia (box-sizing: unset)</h3>
-                <p class="hijo hijo-sin-herencia">width: 100% - desborda el contenedor</p>
             </article>
         </section>
     </main>

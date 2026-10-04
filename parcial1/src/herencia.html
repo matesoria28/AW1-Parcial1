@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcial 1 AW1 - Arquitectura semántica HTML5 y modelo de caja CSS">
+    <title>Parcial 1 - Herencia de box-sizing</title>
+    <link rel="stylesheet" href="./recursos/estilos/estilos.css">
+</head>
+
+<body>
+    <header class="encabezado-principal">
+        <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
+        <!-- nav: navegación entre páginas; aria-current indica la página actual -->
+        <nav class="vinculos" aria-label="Navegación principal">
+            <a href="./index.html">Etiquetas semánticas</a>
+            <a href="./modelo-de-caja.html">Modelo de caja</a>
+            <a href="./herencia.html" class="activo" aria-current="page">Herencia</a>
+        </nav>
+    </header>
+
+    <main class="contenido-principal">
+        <section id="herencia" aria-labelledby="titulo-herencia">
+            <h2 id="titulo-herencia">¿box-sizing se hereda?</h2>
+            <p>
+                No se hereda por defecto. Por eso el reseteo usa inherit para pasar el valor de html
+                a todos los elementos.
+            </p>
+
+            <article class="padre">
+                <h3>Caso 1: con reseteo (hereda border-box)</h3>
+                <p class="hijo">width: 100% - encaja en el contenedor</p>
+            </article>
+
+            <article class="padre">
+                <h3>Caso 2: sin herencia (box-sizing: unset)</h3>
+                <p class="hijo hijo-sin-herencia">width: 100% - desborda el contenedor</p>
+            </article>
+        </section>
+    </main>
+
+    <footer class="pie-principal">
+        <p>Mateo Soria - Aplicaciones Web 1 - Parcial 1</p>
+    </footer>
+</body>
+
+</html>

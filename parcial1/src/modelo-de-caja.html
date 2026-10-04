@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Parcial 1 AW1 - Arquitectura semántica HTML5 y modelo de caja CSS">
+    <title>Parcial 1 - Modelo de caja</title>
+    <link rel="stylesheet" href="./recursos/estilos/estilos.css">
+</head>
+
+<body>
+    <header class="encabezado-principal">
+        <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
+        <!-- nav: navegación entre páginas; aria-current indica la página actual -->
+        <nav class="vinculos" aria-label="Navegación principal">
+            <a href="./index.html">Etiquetas semánticas</a>
+            <a href="./modelo-de-caja.html" class="activo" aria-current="page">Modelo de caja</a>
+            <a href="./herencia.html">Herencia</a>
+        </nav>
+    </header>
+
+    <main class="contenido-principal">
+        <section id="modelo-de-caja" aria-labelledby="titulo-caja">
+            <h2 id="titulo-caja">Modelo de caja: content-box vs. border-box</h2>
+            <p>
+                Las dos cajas tienen las mismas declaraciones (width, height, padding y border).
+                Solo cambia box-sizing. El azul claro marca el área de contenido.
+            </p>
+
+            <!-- cada caja es un párrafo con su descripción; las dos tienen las mismas medidas -->
+            <section class="comparacion" aria-label="Cajas de ejemplo">
+                <p class="caja caja-content-box">
+                    <strong>content-box</strong> (por defecto)<br>
+                    Contenido: 300 x 150 px<br>
+                    Total: 360 x 210 px
+                </p>
+
+                <p class="caja caja-border-box">
+                    <strong>border-box</strong> (modificado)<br>
+                    Contenido: 240 x 90 px<br>
+                    Total: 300 x 150 px
+                </p>
+            </section>
+        </section>
+    </main>
+
+    <footer class="pie-principal">
+        <p>Mateo Soria - Aplicaciones Web 1 - Parcial 1</p>
+    </footer>
+</body>
+
+</html>

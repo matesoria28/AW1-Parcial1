@@ -61,7 +61,14 @@ html {
     font-size: 18px;
 }
 
+/*
+body en columna con flexbox: header, main y footer quedan apilados y
+min-height: 100vh hace que ocupe como mínimo todo el alto de la pantalla
+*/
 body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
     background-color: #f4f7fb;
     color: #2c3e50;
     line-height: 1.5;
@@ -113,12 +120,21 @@ a:hover {
     gap: 15px;
 }
 
+/* enlace de la página actual: se resalta con un borde inferior */
+.encabezado-principal .vinculos .activo {
+    color: #ffffff;
+    font-weight: bold;
+    border-bottom: 2px solid #a9c7e8;
+}
+
 /* CONTENIDO PRINCIPAL */
 /*
 el margen separa visualmente el main del header y del footer:
 cada región del body queda como un bloque independiente
 */
+/* flex-grow: 1 hace que el main ocupe el espacio libre y empuje el footer al final */
 .contenido-principal {
+    flex-grow: 1;
     margin: 20px;
     padding: 20px;
     background-color: #ffffff;
@@ -126,14 +142,9 @@ cada región del body queda como un bloque independiente
     border-radius: 8px;
 }
 
-/*
-overflow-x: auto evita que el desborde del caso 2 genere scroll en toda la página
-scroll-margin-top compensa la altura del encabezado sticky al saltar con el nav
-*/
+/* overflow-x: auto evita que el desborde del caso 2 genere scroll en toda la página */
 .contenido-principal > section {
-    margin-bottom: 30px;
     overflow-x: auto;
-    scroll-margin-top: 120px;
 }
 
 .comparacion {
