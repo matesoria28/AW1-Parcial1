@@ -64,27 +64,27 @@
                 </p>
 
                 <section class="comparacion" aria-label="Comparación de marcado">
-                    <figure class="codigo">
-                        <figcaption>Antes: solo div (sin significado)</figcaption>
-<pre><code>&lt;div class="cabecera"&gt;
-    &lt;div class="menu"&gt;...&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="contenido"&gt;
-    &lt;div class="tema"&gt;...&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class="pie"&gt;...&lt;/div&gt;</code></pre>
-                    </figure>
+                    <article class="codigo">
+                        <h4>Antes: solo div (sin significado)</h4>
+                        <ul>
+                            <li>div class="cabecera"</li>
+                            <li>div class="menu"</li>
+                            <li>div class="contenido"</li>
+                            <li>div class="tema"</li>
+                            <li>div class="pie"</li>
+                        </ul>
+                    </article>
 
-                    <figure class="codigo">
-                        <figcaption>Después: marcado semántico</figcaption>
-<pre><code>&lt;header&gt;
-    &lt;nav&gt;...&lt;/nav&gt;
-&lt;/header&gt;
-&lt;main&gt;
-    &lt;section&gt;...&lt;/section&gt;
-&lt;/main&gt;
-&lt;footer&gt;...&lt;/footer&gt;</code></pre>
-                    </figure>
+                    <article class="codigo">
+                        <h4>Después: marcado semántico</h4>
+                        <ul>
+                            <li>header</li>
+                            <li>nav</li>
+                            <li>main</li>
+                            <li>section</li>
+                            <li>footer</li>
+                        </ul>
+                    </article>
                 </section>
             </article>
         </section>
@@ -96,23 +96,19 @@
                 Solo cambia box-sizing. El azul claro marca el área de contenido.
             </p>
 
-            <!-- figure + figcaption: cada caja es una figura con su descripción, no hace falta un div -->
+            <!-- cada caja es un párrafo con su descripción; las dos tienen las mismas medidas -->
             <section class="comparacion" aria-label="Cajas de ejemplo">
-                <figure class="caja caja-content-box">
-                    <figcaption>
-                        <strong>content-box</strong> (por defecto)<br>
-                        Contenido: 300 x 150 px<br>
-                        Total: 360 x 210 px
-                    </figcaption>
-                </figure>
+                <p class="caja caja-content-box">
+                    <strong>content-box</strong> (por defecto)<br>
+                    Contenido: 300 x 150 px<br>
+                    Total: 360 x 210 px
+                </p>
 
-                <figure class="caja caja-border-box">
-                    <figcaption>
-                        <strong>border-box</strong> (modificado)<br>
-                        Contenido: 240 x 90 px<br>
-                        Total: 300 x 150 px
-                    </figcaption>
-                </figure>
+                <p class="caja caja-border-box">
+                    <strong>border-box</strong> (modificado)<br>
+                    Contenido: 240 x 90 px<br>
+                    Total: 300 x 150 px
+                </p>
             </section>
         </section>
 

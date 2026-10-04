@@ -145,22 +145,21 @@ scroll-margin-top compensa la altura del encabezado sticky al saltar con el nav
 
 /* ANTES vs. DESPUÉS (marcado) */
 .codigo {
-    margin: 0;
-    padding: 10px;
+    padding: 10px 20px;
     border: 1px solid #3d6a99;
     border-radius: 6px;
     background-color: #eef3f9;
 }
 
-.codigo figcaption {
-    font-weight: bold;
+.codigo h4 {
+    margin: 0 0 5px;
     font-size: 0.8rem;
     color: #1f3a5f;
 }
 
-.codigo pre {
-    margin: 10px 0 0;
-    font-size: 0.75rem;
+.codigo ul {
+    margin: 0;
+    font-size: 0.8rem;
 }
 
 /* MODELO DE CAJA: content-box vs border-box */
@@ -181,7 +180,7 @@ dónde termina el contenido y empieza el padding (blanco)
 .caja {
     width: 300px;
     height: 150px;
-    margin: 0; /* figure trae margen por defecto */
+    margin: 0; /* p trae margen por defecto */
     flex-shrink: 0; /* evita que flexbox achique la caja en pantallas chicas y altere la medida */
     padding: 20px;
     border: 10px solid #1f3a5f;
