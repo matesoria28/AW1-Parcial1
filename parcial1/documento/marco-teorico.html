@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Parcial 1 - Soria Mateo</title>
+    <style>
+        @page { size: A4; margin: 1.6cm 1.8cm; }
+        body { font-family: Verdana, Geneva, Tahoma, sans-serif; font-size: 10pt; line-height: 1.45; color: #222222; }
+        .datos { border-bottom: 2px solid #333333; padding-bottom: 8px; margin-bottom: 16px; }
+        .datos p { margin: 2px 0; }
+        h1 { font-size: 15pt; margin: 0 0 8px; }
+        h2 { font-size: 12pt; margin: 18px 0 6px; }
+        p { margin: 0 0 8px; text-align: justify; }
+        code { font-family: "Courier New", monospace; font-size: 10pt; }
+        pre { font-size: 9pt; background: #eeeeee; padding: 8px; border: 1px solid #999999; }
+        table { border-collapse: collapse; margin: 6px 0 10px; font-size: 9.5pt; }
+        th, td { border: 1px solid #999999; padding: 4px 8px; text-align: left; }
+        .salto { page-break-before: always; }
+        li { margin-bottom: 2px; }
+        img { width: 100%; border: 1px solid #999999; }
+    </style>
+</head>
+
+<body>
+    <section class="datos">
+        <h1>Parcial 1 (M1) - Aplicaciones Web 1</h1>
+        <p><strong>Alumno:</strong> Mateo Soria</p>
+        <p><strong>Carrera:</strong> Analista de Sistemas - IES Siglo 21</p>
+        <p><strong>Docente:</strong> Andrés Senn</p>
+        <p><strong>Parcial n.º:</strong> 1</p>
+        <p><strong>Tema elegido:</strong> 1) Arquitectura semántica HTML5 y modelo de caja CSS</p>
+    </section>
+
+    <h2>Marco teórico</h2>
+
+    <h2>HTML: marcado semántico y jerarquía de contenidos</h2>
+    <p>
+        El marcado semántico consiste en elegir cada etiqueta por el significado de su contenido y no por
+        su aspecto visual. HTML5 incorporó contenedores con un rol definido: <code>&lt;header&gt;</code> agrupa
+        el contenido introductorio, <code>&lt;nav&gt;</code> los enlaces de navegación, <code>&lt;main&gt;</code>
+        el contenido central (único por página), <code>&lt;section&gt;</code> un bloque temático con su propio
+        encabezado, <code>&lt;article&gt;</code> una pieza independiente y <code>&lt;footer&gt;</code> el cierre con
+        datos de autoría o contacto. A diferencia de <code>&lt;div&gt;</code>, que es un contenedor genérico sin
+        significado, estas etiquetas generan regiones de referencia (landmarks ARIA: banner, navigation,
+        main, contentinfo) que los lectores de pantalla anuncian y permiten recorrer con atajos, cumpliendo
+        el criterio WCAG 1.3.1 (Información y relaciones). Los motores de búsqueda también usan esta
+        jerarquía para identificar el contenido relevante, lo que favorece el SEO.
+    </p>
+
+    <h2>CSS: modelo de caja alternativo y reseteo global</h2>
+    <p>
+        Según el modelo de caja, todo elemento se representa como una caja formada por contenido,
+        padding, border y margin. Con el valor por defecto, <code>box-sizing: content-box</code>,
+        <code>width</code> y <code>height</code> definen solo el área de contenido, por lo que el padding y el
+        borde se suman: una caja de 300 px de ancho con 20 px de padding y 10 px de borde ocupa 360 px.
+        Con <code>border-box</code>, el ancho declarado incluye padding y borde: la caja mide 300 px y el
+        contenido se reduce a 240 px. <code>box-sizing</code> no es una propiedad heredable, por eso el
+        reseteo global la declara en <code>html</code> y la propaga con
+        <code>*, *::before, *::after { box-sizing: inherit; }</code>, además de anular los márgenes por
+        defecto de <code>html</code> y <code>body</code>.
+    </p>
+
+    <h2>Interacción entre HTML y CSS</h2>
+    <p>
+        HTML aporta la estructura y el significado: cada contenedor semántico genera una caja de bloque
+        en el flujo normal. CSS decide cómo se dimensionan y distribuyen esas cajas. El reseteo con
+        border-box vuelve predecible el tamaño de cada región semántica, sin agregar <code>&lt;div&gt;</code>
+        envoltorios solo para corregir medidas, y así el marcado se mantiene limpio y accesible.
+    </p>
+
+    <h2>Fuentes de consulta</h2>
+    <ol>
+        <li>Senn, A. <em>Aplicaciones Web I</em>. Editorial IES Siglo 21. SP2 (Compaginación HTML, accesibilidad) y SP3 (modelo de caja).</li>
+        <li>MDN Web Docs. <em>box-sizing</em>. https://developer.mozilla.org/es/docs/Web/CSS/box-sizing</li>
+        <li>MDN Web Docs. <em>Elementos HTML (referencia) - Seccionamiento de contenido</em>. https://developer.mozilla.org/es/docs/Web/HTML/Element</li>
+        <li>W3C WAI. <em>ARIA Landmarks Example</em>. https://www.w3.org/WAI/ARIA/apg/patterns/landmarks/</li>
+        <li>W3C. <em>WCAG 2.1 - Criterio 1.3.1 Información y relaciones</em>. https://www.w3.org/TR/WCAG21/#info-and-relationships</li>
+    </ol>
+
+    <h2 class="salto">Demostración codificada</h2>
+    <p>
+        Archivos: <code>src/index.html</code> y <code>src/recursos/estilos/estilos.css</code>. Se ejecuta con
+        <code>pnpm install</code> y <code>pnpm dev</code> (five-server, raíz en <code>src</code>).
+    </p>
+
+    <h2>1. Estructura semántica (antes vs. después)</h2>
+    <p>
+        La página está maquetada solo con <code>header</code>, <code>nav</code>, <code>main</code>,
+        <code>section</code>, <code>article</code>, <code>figure</code> y <code>footer</code>, sin ningún
+        <code>div</code>. Cada <code>section</code> se vincula a su título con <code>aria-labelledby</code> y el
+        <code>nav</code> tiene <code>aria-label</code>. Dentro de la página se muestra el mismo esquema escrito
+        con <code>div</code> (antes) y con etiquetas semánticas (después).
+    </p>
+
+    <h2>2. content-box (por defecto) vs. border-box (modificado)</h2>
+    <p>Dos cajas con las mismas declaraciones: <code>width: 300px; height: 150px; padding: 20px; border: 10px</code>.</p>
+    <table>
+        <tr><th>box-sizing</th><th>Cálculo del ancho</th><th>Tamaño final renderizado</th><th>Área de contenido</th></tr>
+        <tr><td>content-box</td><td>300 + 20×2 + 10×2</td><td>360 × 210 px</td><td>300 × 150 px</td></tr>
+        <tr><td>border-box</td><td>300 (incluye padding y borde)</td><td>300 × 150 px</td><td>240 × 90 px</td></tr>
+    </table>
+    <p>
+        Los valores se verificaron en el navegador (DevTools &gt; Computed): <code>offsetWidth</code> de 360 px
+        y 300 px respectivamente. Con <code>background-clip: content-box</code> el amarillo pinta solo el área de
+        contenido y se ve cuánto espacio queda en cada caso.
+    </p>
+
+    <h2>3. ¿box-sizing es heredable?</h2>
+    <p>
+        No. Para probarlo se usan dos hijos con <code>width: 100%</code>, 16 px de padding y 4 px de borde:
+    </p>
+    <ul>
+        <li><strong>Caso 1:</strong> hereda <code>border-box</code> gracias al reseteo con <code>inherit</code> y encaja exacto en su contenedor.</li>
+        <li><strong>Caso 2:</strong> usa <code>box-sizing: unset</code>, que equivale a <code>inherit</code> si la propiedad es heredable y a <code>initial</code> si no lo es. El valor computado es <code>content-box</code> aunque el padre tenga <code>border-box</code>, lo que demuestra que la propiedad no se hereda sola. El hijo desborda 40 px (16×2 + 4×2).</li>
+    </ul>
+
+    <h2>Reseteo global aplicado</h2>
+<pre>html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+}</pre>
+
+    <h2 class="salto">Captura de la demostración</h2>
+    <img src="./captura-demo.png" alt="Captura de la página: estructura semántica, comparación de cajas y prueba de herencia">
+</body>
+
+</html>

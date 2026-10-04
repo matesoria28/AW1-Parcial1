@@ -4,35 +4,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Parcial 1 AW1 - Arquitectura semantica HTML5 y modelo de caja CSS">
+    <meta name="description" content="Parcial 1 AW1 - Arquitectura semántica HTML5 y modelo de caja CSS">
     <title>Parcial 1 - Arquitectura semántica y modelo de caja</title>
-    <link rel="stylesheet" href="recursos/estilos/estilos.css">
+    <link rel="stylesheet" href="./recursos/estilos/estilos.css">
 </head>
+
 <body>
-    <!-- header: encabezado de la pagina -->
+    <!-- header: contenido introductorio de la página (landmark "banner") -->
     <header class="encabezado-principal">
         <h1>Arquitectura semántica HTML5 y modelo de caja CSS</h1>
-        <!-- nav: bloque de navegacion -->
-        <nav class="vinculos" aria-label="Navegacion principal">
-            <a href="#semantica">Etiquetas semanticas</a>
+        <!-- nav: bloque de navegación principal (landmark "navigation") -->
+        <nav class="vinculos" aria-label="Navegación principal">
+            <a href="#semantica">Etiquetas semánticas</a>
             <a href="#modelo-de-caja">Modelo de caja</a>
             <a href="#herencia">Herencia</a>
         </nav>
     </header>
 
-    <!-- main: contenido principal, uno solo por pagina -->
+    <!-- main: contenido central, uno solo por página (landmark "main") -->
     <main class="contenido-principal">
 
-        <!-- section: agrupa contenido por tema y lleva su encabezado -->
+        <!-- section: agrupa contenido de un mismo tema y lleva su propio encabezado -->
         <section id="semantica" aria-labelledby="titulo-semantica">
-            <h2 id="titulo-semantica">Etiquetas semanticas</h2>
+            <h2 id="titulo-semantica">Etiquetas semánticas</h2>
 
-            <!-- article: contenido que tiene sentido por si solo -->
+            <!-- article: contenido que tiene sentido por sí solo -->
             <article>
                 <h3>header y nav</h3>
                 <p>
-                    header agrupa el contenido introductorio y nav identifica los enlaces de navegacion.
-                    Los lectores de pantalla los anuncian como regiones de referencia .
+                    header agrupa el contenido introductorio y nav identifica los enlaces de navegación.
+                    Los lectores de pantalla los anuncian como regiones de referencia (landmarks).
                 </p>
             </article>
 
@@ -47,8 +48,41 @@
             <article>
                 <h3>footer</h3>
                 <p>
-                    footer cierra la pagina o una seccion con datos de autoria, contacto o enlaces.
+                    footer cierra la página o una sección con datos de autoría, contacto o enlaces.
                 </p>
+            </article>
+
+            <!-- ANTES vs. DESPUÉS: la misma estructura con div genéricos y con etiquetas semánticas -->
+            <article>
+                <h3>Antes vs. después</h3>
+                <p>
+                    Visualmente las dos versiones pueden verse iguales, pero solo la segunda le
+                    comunica al navegador, a los lectores de pantalla y a los buscadores qué es cada parte.
+                </p>
+
+                <section class="comparacion" aria-label="Comparación de marcado">
+                    <figure class="codigo">
+                        <figcaption>Antes: solo div (sin significado)</figcaption>
+<pre><code>&lt;div class="cabecera"&gt;
+    &lt;div class="menu"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="contenido"&gt;
+    &lt;div class="tema"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="pie"&gt;...&lt;/div&gt;</code></pre>
+                    </figure>
+
+                    <figure class="codigo">
+                        <figcaption>Después: marcado semántico</figcaption>
+<pre><code>&lt;header&gt;
+    &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+    &lt;section&gt;...&lt;/section&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code></pre>
+                    </figure>
+                </section>
             </article>
         </section>
 
@@ -56,14 +90,14 @@
             <h2 id="titulo-caja">Modelo de caja: content-box vs. border-box</h2>
             <p>
                 Las dos cajas tienen las mismas declaraciones (width, height, padding y border).
-                Solo cambia box-sizing.
+                Solo cambia box-sizing. El amarillo marca el área de contenido.
             </p>
 
-            <!-- figure + figcaption: cada caja es una figura, no hace falta un div -->
+            <!-- figure + figcaption: cada caja es una figura con su descripción, no hace falta un div -->
             <section class="comparacion" aria-label="Cajas de ejemplo">
                 <figure class="caja caja-content-box">
                     <figcaption>
-                        <strong>content-box</strong><br>
+                        <strong>content-box</strong> (por defecto)<br>
                         Contenido: 300 x 150 px<br>
                         Total: 360 x 210 px
                     </figcaption>
@@ -71,7 +105,7 @@
 
                 <figure class="caja caja-border-box">
                     <figcaption>
-                        <strong>border-box</strong><br>
+                        <strong>border-box</strong> (modificado)<br>
                         Contenido: 240 x 90 px<br>
                         Total: 300 x 150 px
                     </figcaption>
@@ -80,25 +114,25 @@
         </section>
 
         <section id="herencia" aria-labelledby="titulo-herencia">
-            <h2 id="titulo-herencia">box-sizing se hereda?</h2>
+            <h2 id="titulo-herencia">¿box-sizing se hereda?</h2>
             <p>
                 No se hereda por defecto. Por eso el reseteo usa inherit para pasar el valor de html
                 a todos los elementos.
             </p>
 
             <article class="padre">
-                <h3>Con reseteo (hereda border-box)</h3>
+                <h3>Caso 1: con reseteo (hereda border-box)</h3>
                 <p class="hijo">width: 100% - encaja en el contenedor</p>
             </article>
 
             <article class="padre">
-                <h3>Sin herencia (content-box)</h3>
+                <h3>Caso 2: sin herencia (box-sizing: unset)</h3>
                 <p class="hijo hijo-sin-herencia">width: 100% - desborda el contenedor</p>
             </article>
         </section>
     </main>
 
-    <!-- footer: pie de pagina -->
+    <!-- footer: cierre de la página con datos de autoría (landmark "contentinfo") -->
     <footer class="pie-principal">
         <p>Mateo Soria - Aplicaciones Web 1 - Parcial 1</p>
     </footer>

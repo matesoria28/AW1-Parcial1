@@ -1,9 +1,15 @@
 /*
-Tema 1: Arquitectura semantica HTML5 y modelo de caja CSS
+Tema 1: Arquitectura semántica HTML5 y modelo de caja CSS
+Mateo Soria - Aplicaciones Web 1 - Parcial 1
 */
 
 /* RESETEO GLOBAL */
-
+/*
+box-sizing NO es heredable: su valor inicial es content-box en cada elemento.
+Se declara border-box en html y con inherit se obliga a todos los elementos
+(y a sus pseudoelementos) a tomar el valor del padre. Así, si un componente
+necesita content-box, sus hijos también lo toman.
+*/
 html {
     box-sizing: border-box;
 }
@@ -14,13 +20,14 @@ html {
     box-sizing: inherit;
 }
 
+/* se quitan los márgenes que el navegador agrega por defecto */
 html,
 body {
     margin: 0;
     padding: 0;
 }
 
-/* Selectores de TIPO */
+/* SELECTORES DE TIPO */
 html {
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: 18px;
@@ -35,8 +42,16 @@ a {
     text-decoration: none;
 }
 
+a:hover {
+    text-decoration: underline;
+}
+
 /* ENCABEZADO */
+/* sticky: queda fijo arriba al hacer scroll sin salir del flujo normal */
 .encabezado-principal {
+    position: sticky;
+    top: 0;
+    z-index: 1;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -47,11 +62,12 @@ a {
 
 .encabezado-principal h1 {
     margin: 0;
-    font-size: 1.4rem;
+    font-size: 1.2rem;
 }
 
 .encabezado-principal .vinculos {
     display: flex;
+    flex-wrap: wrap;
     gap: 15px;
 }
 
@@ -61,20 +77,39 @@ a {
     padding: 20px;
 }
 
-/* solo se ve la sección elegida en el menú (pseudoclase :target) */
+/*
+overflow-x: auto evita que el desborde del caso 2 genere scroll en toda la página
+scroll-margin-top compensa la altura del encabezado sticky al saltar con el nav
+*/
 .contenido-principal > section {
-    display: none;
     margin-bottom: 30px;
     overflow-x: auto;
+    scroll-margin-top: 120px;
 }
 
-.contenido-principal > section:target {
-    display: block;
+.comparacion {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 20px;
 }
 
-/* al abrir la página sin elegir nada, se muestra la primera sección */
-.contenido-principal:not(:has(:target)) #semantica {
-    display: block;
+/* ANTES vs. DESPUÉS (marcado) */
+.codigo {
+    margin: 0;
+    padding: 10px;
+    border: 2px solid #333333;
+    background-color: #eeeeee;
+}
+
+.codigo figcaption {
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+
+.codigo pre {
+    margin: 10px 0 0;
+    font-size: 0.75rem;
 }
 
 /* MODELO DE CAJA: content-box vs border-box */
@@ -89,16 +124,9 @@ border-box:
     ancho total = 300px (el contenido queda en 300 - 60 = 240px)
     alto total  = 150px (el contenido queda en 150 - 60 = 90px)
 
-background-clip: content-box pinta solo el contenido, asi se ve
-dande termina el padding y empieza el borde
+background-clip: content-box pinta solo el contenido, así se ve
+dónde termina el contenido y empieza el padding
 */
-.comparacion {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    gap: 20px;
-}
-
 .caja {
     width: 300px;
     height: 150px;
@@ -107,7 +135,7 @@ dande termina el padding y empieza el borde
     border: 10px solid #333333;
     background-color: #ffff00;
     background-clip: content-box;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
 }
 
 /* comportamiento por defecto del navegador */
@@ -115,18 +143,23 @@ dande termina el padding y empieza el borde
     box-sizing: content-box;
 }
 
-/* comportamiento modificado (hereda border-box del reseteo) */
+/* comportamiento modificado (es el mismo valor que hereda del reseteo) */
 .caja-border-box {
     box-sizing: border-box;
 }
 
 /* HERENCIA */
 /*
-Caso 1: .hijo hereda border-box de html, su width: 100% incluye
-padding y borde, entonces encaja.
-Caso 2: .hijo-sin-herencia fuerza content-box (valor inicial),
-width: 100% + padding (16 x 2) + borde (4 x 2) = 40px de mas, desborda.
-Se puede comprobar en DevTools > Computed.
+Caso 1: .hijo hereda border-box gracias al reseteo, su width: 100%
+incluye padding y borde, entonces encaja en el padre.
+
+Caso 2: unset hace que la propiedad se comporte como "inherit" si es
+heredable y como "initial" si no lo es. El resultado es content-box
+(el valor inicial) aunque el padre tenga border-box: esto prueba que
+box-sizing NO es heredable de forma natural.
+width: 100% + padding (16 x 2) + borde (4 x 2) = 40px de más, desborda.
+
+Se puede comprobar en DevTools > Computed > box-sizing.
 */
 .padre {
     margin-bottom: 15px;
@@ -136,6 +169,7 @@ Se puede comprobar en DevTools > Computed.
 
 .padre h3 {
     margin-top: 0;
+    font-size: 1rem;
 }
 
 .hijo {
@@ -147,7 +181,7 @@ Se puede comprobar en DevTools > Computed.
 }
 
 .hijo-sin-herencia {
-    box-sizing: content-box;
+    box-sizing: unset;
 }
 
 /* PIE PRINCIPAL */
@@ -158,4 +192,21 @@ Se puede comprobar en DevTools > Computed.
 
 .pie-principal p {
     margin: 0;
+}
+
+/* MEDIA QUERIES */
+@media (width > 900px) {
+    .encabezado-principal {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .encabezado-principal h1 {
+        font-size: 1.4rem;
+    }
+
+    .contenido-principal > section {
+        scroll-margin-top: 70px;
+    }
 }
