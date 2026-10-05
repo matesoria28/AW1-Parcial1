@@ -16,17 +16,15 @@ Paleta (azul y blanco, tonos suaves):
 /* RESETEO GLOBAL */
 /*
 box-sizing NO es heredable: su valor inicial es content-box en cada elemento.
-Se declara border-box en html y con inherit se obliga a todos los elementos
-(y a sus pseudoelementos) a tomar el valor del padre. Así, si un componente
+Se declara border-box en html y con inherit (en el selector universal *) se
+obliga a todos los elementos a tomar el valor del padre. Así, si un componente
 necesita content-box, sus hijos también lo toman.
 */
 html {
     box-sizing: border-box;
 }
 
-*,
-*::before,
-*::after {
+* {
     box-sizing: inherit;
 }
 
@@ -71,7 +69,6 @@ body {
     min-height: 100vh;
     background-color: #f4f7fb;
     color: #2c3e50;
-    line-height: 1.5;
 }
 
 h2,
@@ -139,7 +136,6 @@ cada región del body queda como un bloque independiente
     padding: 20px;
     background-color: #ffffff;
     border: 1px solid #dce8f5;
-    border-radius: 8px;
 }
 
 /* overflow-x: auto evita que el desborde del caso 2 genere scroll en toda la página */
@@ -158,7 +154,6 @@ cada región del body queda como un bloque independiente
 .codigo {
     padding: 10px 20px;
     border: 1px solid #3d6a99;
-    border-radius: 6px;
     background-color: #eef3f9;
 }
 
@@ -227,7 +222,6 @@ Se puede comprobar en DevTools > Computed > box-sizing.
     margin-bottom: 15px;
     padding: 15px;
     border: 2px dashed #3d6a99;
-    border-radius: 6px;
 }
 
 .padre h3 {

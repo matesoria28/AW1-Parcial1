@@ -57,7 +57,7 @@
         Con <code>border-box</code>, el ancho declarado incluye padding y borde: la caja mide 300 px y el
         contenido se reduce a 240 px. <code>box-sizing</code> no es una propiedad heredable, por eso el
         reseteo global la declara en <code>html</code> y la propaga con
-        <code>*, *::before, *::after { box-sizing: inherit; }</code>, además de anular los márgenes por
+        <code>* { box-sizing: inherit; }</code>, además de anular los márgenes por
         defecto de <code>html</code> y <code>body</code>.
     </p>
 
@@ -124,7 +124,7 @@
 
     <h2>Reseteo global aplicado</h2>
 <pre>html { box-sizing: border-box; }
-*, *::before, *::after { box-sizing: inherit; }
+* { box-sizing: inherit; }
 html, body { margin: 0; padding: 0; }</pre>
 
     <h2 class="salto">Capturas de la demostración</h2>
